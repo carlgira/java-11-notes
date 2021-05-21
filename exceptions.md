@@ -4,6 +4,7 @@ Read first **Exception Handling in Java** https://www.baeldung.com/java-exceptio
 
 Type of exceptions
 
+```
               ---> Throwable <--- 
               |    (checked)     |
               |                  |
@@ -13,7 +14,7 @@ Type of exceptions
       |
 RuntimeException
   (unchecked)
-
+```
 - **checked:** Exceptions that java requires us to handle.
   -  IOException
   -  ServletException
