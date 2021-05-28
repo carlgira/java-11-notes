@@ -15,6 +15,7 @@ Type of exceptions
 RuntimeException
   (unchecked)
 ```
+
 - **checked:** Exceptions that java requires us to handle.
   -  IOException
   -  ServletException
