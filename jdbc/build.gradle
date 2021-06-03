@@ -1,0 +1,22 @@
+plugins {
+	id 'java'
+}
+
+group = 'com.carlgira'
+version = '1.0.0'
+sourceCompatibility = '11'
+targetCompatibility = '11'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation group: 'com.oracle.database.jdbc', name: 'ojdbc11', version: '21.1.0.0'
+	// mysql postgress
+
+}
+
+test {
+	useJUnitPlatform()
+}
