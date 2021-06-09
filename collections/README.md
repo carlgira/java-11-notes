@@ -40,8 +40,8 @@ For the TreeSet and TreeMap, the objects must implement Comparable or use Compar
 - Arrays.binarySearch(new int[]{5,2, 1}, 3) => Search a value on the array an returns the position where is it, else -1.
 - Arrays.mismatch(new int[]{5,2, 1}, new int[]{5,1, 4}) => Receives two arrays as input and returns the first position where there is a mismatch, else -1.
 - Arrays.sort(new int[]{5,2, 1}) => Sorts the array.
-- Arrays.asList() => Create an array of values
-- Arrays.stream() => Create a stream of array
+- Arrays.asList() => Returns a List from the input array.
+- Arrays.stream() => Create a stream of array.
 
 
 

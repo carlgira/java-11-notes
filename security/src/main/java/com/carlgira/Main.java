@@ -4,7 +4,6 @@ import java.io.*;
 import java.security.AccessController;
 import java.security.PrivilegedAction;
 
-
 /**
  * Serializable class
     * Marker that class can be serializable
@@ -38,6 +37,7 @@ class Two implements Serializable {
         this.user=user;
         this.author=author;
     }
+
     private void writeObject(ObjectOutputStream out) throws IOException {
         out.defaultWriteObject();
         out.writeObject(this.author);
@@ -80,6 +80,7 @@ class Person implements Serializable {
  */
 final class Three {
     private final Integer one = 5;
+
     public final void sum(){
 
     }
@@ -141,7 +142,6 @@ class BankAccount {
                 .atRate(2.5)
                 .build();
     }
-
 }
 
 /**
@@ -205,9 +205,11 @@ class Five {
 class Six {
 
     public static void main(String[] args) {
+
         AccessController.doPrivileged(new PrivilegedAction<Integer>() {
             @Override
             public Integer run() {
+
                 return null;
             }
         });
