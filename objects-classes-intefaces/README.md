@@ -121,7 +121,7 @@
     - Interface with a sinlge abstract method
     - Used for lambda operator
 
-- Generics
+## Generics
     - Flavor to write classes to avoid hard-coding.(wrapper to a list of values)
     - It can be used to class level or method level generics.
         - class One<T> {}
@@ -136,6 +136,7 @@
             - List<Parent> list = new ArrayList<Child>(); => Compilation Error
             - List<? extends Parent> list = new ArrayList<Child>(); => Works
     - Generics Erasure: The process that the compiler does to convert the generics types to real objects.
+    - super only on wildcards  List<? super Integer>
 
 https://www.baeldung.com/java-generics
 https://docs.oracle.com/javase/tutorial/java/generics/index.html
