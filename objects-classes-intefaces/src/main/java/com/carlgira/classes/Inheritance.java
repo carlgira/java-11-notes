@@ -10,6 +10,7 @@ public class Inheritance {
  * Methods from object, equals(), clone(), hashCode(), toString()
  */
 class SampleObjectOne {}
+
 class SampleObjectTwo extends Object{
 
     @Override
@@ -58,6 +59,11 @@ class ChildTwo extends Parent {
     ChildTwo(Integer one) {
         super(one);
     }
+
+    @Override
+    public int sum(int o, int u) {
+        return 1;
+    }
 }
 
 
@@ -78,6 +84,11 @@ class ChildOne extends Parent {
         this.two = 6;
     }
 
+    @Override
+    public int sum(int o, int u) {
+        return 2;
+    }
+
     /**
      * Overriding parent method
      */
@@ -86,17 +97,30 @@ class ChildOne extends Parent {
         return super.subtract(o, u) - 1;
     }
 
-    public static void main(String[] args) {
-        // Polymorphism
-        Parent parent = new Parent(0);
-        Parent child1 = new ChildOne(1);
-        //Parent child2 = new ChildTwo(1);
+    public void as(Object parent){
 
-        System.out.println(parent instanceof Parent);
+        if(parent instanceof Parent ){
+
+        }
+
+    }
+
+    public static void main(String[] args) {
+
+        Parent parent = new Parent(1);
+
+        // Polymorphism
+        Parent child1 = new ChildOne(1);
+        Parent child2 = new ChildTwo(2);
+
         System.out.println(child1 instanceof Parent);
         System.out.println(child1 instanceof ChildOne);
     }
 }
+
+
+
+
 
 /**
  * Abstract classes

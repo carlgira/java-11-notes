@@ -75,6 +75,7 @@ class SampleClass implements SampleInterface {
     public Integer subtract() {
         return valueOne - valueTwo;
     }
+
 }
 
 /**
