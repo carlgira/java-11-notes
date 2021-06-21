@@ -67,7 +67,7 @@
 -  Subclass constructors
     -  Must implement super constructors if there is one super.constructor with params. (and there is no default one)
 -  Order of initialization
-   ![object_initialization](object_initialization.png)
+   ![object_initialization](docs/object_initialization.png)
 -  Override superclass method
 -  Polymorphism
     -  Instantiate the way Parent o = new Child();
@@ -175,6 +175,9 @@ https://docs.oracle.com/javase/tutorial/java/generics/index.html
 - If the interface has defaults methods, they can be called.
 - Common types of of functional interfaces:
     -  **Functions:** Functional interface with a method that receives one value and returns another.
+        - Abstract method of funtion R apply(T t)
+        - Default methods, andThen compose.
+        - Static method, identity (returns a Function that returns the same input)
         -  Since a primitive type can’t be a generic type argument, there are versions of the Function interface for the most used primitive types double, int, long, and their combinations in argument and return types:
         - IntFunction, LongFunction, DoubleFunction: arguments are of specified type, return type is parameterized
         - ToIntFunction, ToLongFunction, ToDoubleFunction: return type is of specified type, arguments are parameterized
@@ -183,12 +186,21 @@ https://docs.oracle.com/javase/tutorial/java/generics/index.html
     - **Supliers:** The Supplier functional interface receive no arguments and returns something.
         - There are specialization of Suplier with BooleanSupplier, DoubleSupplier, LongSupplier and IntSupplier
 - **Consumers:** As opposed to the Supplier, the Consumer accepts a generified argument and returns nothing.
+    - Abstract method void accept(T t)
+    - Default method andThen to concatenate to other consumer consumer.andThen(otherConsumer)
     - Another set of specialized BiConsumer versions is comprised of ObjDoubleConsumer, ObjIntConsumer, and ObjLongConsumer,
 - **Predicates:** In mathematical logic, a predicate is a function that receives a value and returns a boolean value.
+    - Abstract method, void test(T t)
+    - Default methods, and, or, negate
+    - Static methods, not and isEqual.
     - As in all of the previous examples, there are IntPredicate, DoublePredicate and LongPredicate versions of this function that receive primitive values.
 - **Operator:** Operator interfaces are special cases of a function that receive and return the same value type.
 - **Runnable:** Can create a Thread object using a lambda expression.
 - **Comparator, Comparable**
+
+
+![func_int_primitives](docs/func_int_primitives.png)
+![func_int_bi](docs/func_int_bi.png)
 
 
 https://docs.oracle.com/javase/8/docs/api/java/util/function/package-summary.html
