@@ -49,6 +49,16 @@ RuntimeException
 - The catch blocks are run after the declared resources have been closed.
 - When more than one resource is used in a try‐with‐resources statement, they are closed in the reverse order in which they are declared.
 - The close() method should be idempotent, which means it is able to be run multiple times without triggering any side effects.
+- When for some reason the close() method of a Autoclosable class fails, its possible to capture the Exception catching "Exception" and looking for supressed Exceptions array. If the array is empty there is no supresed exception.
+```
+catch(Excepcion e){
+  Throwable[] supresed = e.getSupresed();
+  for(Throwable s : supresed){
+    s.printStackTrace();
+  }
+}
+
+```
     
   ## Notes of question "Not compile"
 - throw instead of throws
@@ -61,6 +71,13 @@ RuntimeException
 - If there is an checked Exception that is not been thrown in a try block, fails
 - Not recomended to catch Throwable and Error
 
+
+## Logging
+  - java.util.logging.*;
+  - log(), severe(), warning(), info(), config(), fine(), finer(), finest()
+  - Logger logger = Logger.getLogger("");
+  - logging.properties
+  - Set Handlers to write
 ## References
 
 Exception Handling in Java https://www.baeldung.com/java-exceptions

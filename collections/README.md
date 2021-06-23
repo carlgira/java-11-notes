@@ -15,7 +15,6 @@
   - FIFO, LIFO. 
   - Operations => add, add, addFirst, addLast, offer, offerFirst, offerLast, remove, removeFirst, removeLast, pop, push, poll, pollFirst, pollLast (ArrayDeque LinkedList)
 
-
 **Map**
 - HashMap => Map that does not care about order.
 - LinkedHashMap => Map that store keys in the same order they are inserted.
@@ -29,10 +28,11 @@
 For the TreeSet and TreeMap, the objects must implement Comparable or use Compartator or else it fails.
 
 **Comparator**
+   - Used as utility classes (Collections or in lambdas) to sort arrays.
    - Class or lambda to compare values. 
    - CompareTo method with 3 outputs (-1, 0, +1)
    - Having compare (x, y) (when x<y => -1) (when x==y => 0)  (when x>y => +1) 
-- Comparable => inteface with single method to compare values. 
+- Comparable => inteface with single method to compare values, implemented by objects inside a collection.
 
 
 **Arrays**
@@ -43,6 +43,19 @@ For the TreeSet and TreeMap, the objects must implement Comparable or use Compar
 - Arrays.asList() => Returns a List from the input array.
 - Arrays.stream() => Create a stream of array.
 
+**Collections**
+- Collections functions, sort(), reverse(), binarySearch(), shuffle()
+
+
+## Concurrent access to collections
+
+- Prevent Collection corruption
+  - Unmodifiable: (inmutable) (fast, but-read-only) 
+    Set<Product> readOnlySet = Collections.unmodifiableSet(set);
+  - Syncronized: (slow and unscalable)
+    Map<Product, Integer> syncMap = Collections.synchronizedMap(map);
+  - Copy-on-write: (fast, but consumes memory) Every thread creates a copy for each thread and later joins changes of all threads.
+    List<Product> copyOnWrite = new CopyOnWriteArrayList<>(list);
 
 
 

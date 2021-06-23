@@ -175,7 +175,7 @@ https://docs.oracle.com/javase/tutorial/java/generics/index.html
 - If the interface has defaults methods, they can be called.
 - Common types of of functional interfaces:
     -  **Functions:** Functional interface with a method that receives one value and returns another.
-        - Abstract method of funtion R apply(T t)
+        - Abstract method, R apply(T t)
         - Default methods, andThen compose.
         - Static method, identity (returns a Function that returns the same input)
         -  Since a primitive type can’t be a generic type argument, there are versions of the Function interface for the most used primitive types double, int, long, and their combinations in argument and return types:
@@ -185,8 +185,9 @@ https://docs.oracle.com/javase/tutorial/java/generics/index.html
         - Two-Arity Function Specializations: Define lambdas with two arguments,there are interfaces that contain “Bi” keyword in their names: BiFunction, ToDoubleBiFunction, ToIntBiFunction, and ToLongBiFunction.
     - **Supliers:** The Supplier functional interface receive no arguments and returns something.
         - There are specialization of Suplier with BooleanSupplier, DoubleSupplier, LongSupplier and IntSupplier
+        - Abstract method, T get();
 - **Consumers:** As opposed to the Supplier, the Consumer accepts a generified argument and returns nothing.
-    - Abstract method void accept(T t)
+    - Abstract method, void accept(T t)
     - Default method andThen to concatenate to other consumer consumer.andThen(otherConsumer)
     - Another set of specialized BiConsumer versions is comprised of ObjDoubleConsumer, ObjIntConsumer, and ObjLongConsumer,
 - **Predicates:** In mathematical logic, a predicate is a function that receives a value and returns a boolean value.

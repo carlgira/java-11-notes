@@ -74,3 +74,19 @@ Restriction on Parallel Stream
 https://www.baeldung.com/java-8-collectors
 https://www.baeldung.com/java-groupingby-collector
 https://www.baeldung.com/java9-stream-collectors
+
+Question Notes:
+- List have stream() or parallelStream(), Stream have sequential() or parallel().
+- ForeachOrdered force a parallel stream to be sequential.
+- BiOperator does not exists, is BinaryOperator. (UnaryOperator and BinaryOperator)
+- The terminal operation triggers the pipeline to run.
+- Optional methods
+- Optional.empty()
+- Optional.of(param) => Param can not be null. Throws nullpointerexception if it is null.
+- Optional.ofNullable(param) => Param can be null.
+- Remember that the generic forms of the functional interfaces (Suplier<T>, Consumer<T> etc) works with objects, the primitive ones (IntSuplier, IntConsumer etc) works only with primitives. (pay attention to return and parameters types)
+- A Comparator lambda is needed for max() or min() for a generic Stream but not needed for primitive Stream  (IntStream, LongStream) .
+- Remember that Object is abbreviated to Obj in all functional interfaces in (ObjDoubleConsumer, ObjIntConsumer etc)
+- Some methods force a parallel stream to be sequential: forEachOrdered(), limit(), skip(), findFirst(). (the behavior is not the same on an unordered stream, ordered streams as List unordered as HashSet).
+- Collectors methods: toList(), toSet(), toMap(), toCollection(Collection)
+- FlatMap works with streams not Collections.

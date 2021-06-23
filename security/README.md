@@ -94,18 +94,6 @@ Problems with passed objects into constructors or functions
 
 File Security bug reports
 
-Secure Serialization and Deserealization
-- Careful with the deserealization of untrusted sources
-- Implementation Seriablizable
-- Fields, no static, no methods
-- Transient fields.
-- override writeObject, ReadObject to custom serialize, ObjectOutputStreeam.PutField, and ObjectInputStream.GetField as maps.
-- Use the variable SerialPersistentField as whitelist for fields to serialize
-- private static final ObjectStreamField[] serialPersistentFields = {new ObjectStreamField("next", List.class)};
-- Must be private static final, and have a list of fields and types.
-- Oher options, Use a proxy serialization
-- serialVersuibUI
-
 Java Policy Files
 - Define permissions to resources.
 - System policy file location:

@@ -375,4 +375,9 @@ public class Main {
 
     }
 
+    public void assers(){
+        assert false : "Bad vaue";
+        assert false;
+    }
+
 }
