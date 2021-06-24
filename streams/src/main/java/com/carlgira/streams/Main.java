@@ -60,6 +60,18 @@ public class Main {
         System.out.println(palindromes);
     }
 
+    public void optionals(){
+        Optional<String> empty = Optional.empty();
+        Optional<String> one = Optional.of("value"); // Throws exception in null
+        Optional<String> two = Optional.ofNullable("value"); // No throws exception if null
+
+        if(empty.isPresent()){
+            String value = empty.get();
+        }
+
+        String value2 = empty.orElse("-1");
+    }
+
     private static void aggregatingOperationsExamples() {
         List<String> words = Arrays.stream("Once upon a midnight dreary while I pondered weak and weary".split("\\s+"))
                 .collect(Collectors.toList());
@@ -159,7 +171,7 @@ public class Main {
         System.out.println(wordsByLength);
     }
 
-    public void other(){
+    public void aggregation(){
 
         List<String> givenList = Arrays.asList("a", "bb", "ccc", "dd");
         String result1 = givenList.stream()
@@ -196,6 +208,8 @@ public class Main {
                 .collect(Collectors.collectingAndThen(Collectors.toList(), l -> l.size()));
 
     }
+
+    // Groupby
 
     enum BlogPostType {
         NEWS,
@@ -374,10 +388,4 @@ public class Main {
          */
 
     }
-
-    public void assers(){
-        assert false : "Bad vaue";
-        assert false;
-    }
-
 }
