@@ -4,10 +4,10 @@ Inmutable flow of elements, that can be procesed sequentally or in parallel.
 - Stream, DOubleStream, IntStream interfaces that extends baseStream.
 
 - Create Streams
-  IntStream.generate().takeWhile().sum()
-  Stream.of().foreach()
-  list.stream().parallel().mapToDouble().sum();
-  Arrays.stream(array).filter().forEach();
+  - IntStream.generate().takeWhile().sum()
+  - Stream.of().foreach()
+  - list.stream().parallel().mapToDouble().sum();
+  - Arrays.stream(array).filter().forEach();
 
 |Intermediate   |Terminal   | 
 |---|---|
@@ -71,11 +71,11 @@ Restriction on Parallel Stream
   list.stream.parallel().foreach(p -> p.addPrice())
 - In Collectors do not use .toMap use toConcurrentMap instedad. (Collectos.tolist() is ok) 
 
-https://www.baeldung.com/java-8-collectors
-https://www.baeldung.com/java-groupingby-collector
-https://www.baeldung.com/java9-stream-collectors
+- https://www.baeldung.com/java-8-collectors
+- https://www.baeldung.com/java-groupingby-collector
+- https://www.baeldung.com/java9-stream-collectors
 
-Question Notes:
+### Question Notes:
 - List have stream() or parallelStream(), Stream have sequential() or parallel().
 - ForeachOrdered force a parallel stream to be sequential.
 - BiOperator does not exists, is BinaryOperator. (UnaryOperator and BinaryOperator)
