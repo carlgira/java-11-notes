@@ -81,9 +81,9 @@ Restriction on Parallel Stream
 - BiOperator does not exists, is BinaryOperator. (UnaryOperator and BinaryOperator)
 - The terminal operation triggers the pipeline to run.
 - Optional methods
-- Optional.empty()
-- Optional.of(param) => Param can not be null. Throws nullpointerexception if it is null.
-- Optional.ofNullable(param) => Param can be null.
+    - Optional.empty()
+    - Optional.of(param) => Param can not be null. Throws nullpointerexception if it is null.
+    - Optional.ofNullable(param) => Param can be null.
 - Remember that the generic forms of the functional interfaces (Suplier<T>, Consumer<T> etc) works with objects, the primitive ones (IntSuplier, IntConsumer etc) works only with primitives. (pay attention to return and parameters types)
 - A Comparator lambda is needed for max() or min() for a generic Stream but not needed for primitive Stream  (IntStream, LongStream) .
 - Remember that Object is abbreviated to Obj in all functional interfaces in (ObjDoubleConsumer, ObjIntConsumer etc)
