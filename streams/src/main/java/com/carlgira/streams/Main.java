@@ -19,6 +19,36 @@ public class Main {
         moreFunnyExamples();
     }
 
+    public void create(){
+        new ArrayList<>().stream();
+
+        class Joe{
+            List<String> values = List.of("1", "2");
+        }
+
+        List<List<String>> values1 = List.of(List.of("1", "2"), List.of("4", "3"));
+        // =>
+        List.of("1", "2", "4", "3");
+
+        IntStream.range(1, 10).dropWhile(x -> x > 5).forEach(System.out::println);
+
+
+        IntStream.range(1, 10).parallel().takeWhile(x -> x < 5).forEach(System.out::println);
+
+        IntStream.range(1, 10).parallel().allMatch(x -> x < 5);
+
+
+        List.of().parallelStream().sequential().parallel().sequential().parallel();
+        List.of().stream();
+
+
+
+
+        IntStream.range(1, 5);
+        DoubleStream.generate(() -> Math.random());
+
+    }
+
     private static void mapExamples() {
         String s = "1 2 3 4 5 6 7 8 9 10";
 
@@ -60,10 +90,11 @@ public class Main {
         System.out.println(palindromes);
     }
 
-    public void optionals(){
+    public void optionals(){ // max() min() average() Optional<Double>
+
         Optional<String> empty = Optional.empty();
-        Optional<String> one = Optional.of("value"); // Throws exception in null
-        Optional<String> two = Optional.ofNullable("value"); // No throws exception if null
+        Optional<String> one = Optional.of("null"); // Throws exception in null
+        Optional<String> two = Optional.ofNullable(null); // No throws exception if null
 
         if(empty.isPresent()){
             String value = empty.get();
@@ -169,6 +200,7 @@ public class Main {
         // items which had this value.
         Map<Integer, List<String>> wordsByLength = words.stream().collect(Collectors.groupingBy(String::length));
         System.out.println(wordsByLength);
+
     }
 
     public void aggregation(){
@@ -202,7 +234,6 @@ public class Main {
 
         Map<Integer, Set<String>> result8 = givenList.stream()
                 .collect(Collectors.groupingBy(String::length, Collectors.toSet()));
-
 
         int s = givenList.stream()
                 .collect(Collectors.collectingAndThen(Collectors.toList(), l -> l.size()));
@@ -284,7 +315,8 @@ public class Main {
         Map<String, Map<BlogPostType, List<BlogPost>>> map1 = posts.stream()
                 .collect(Collectors.groupingBy(BlogPost::getAuthor, Collectors.groupingBy(BlogPost::getType)));
         /**
-         * {six={NEWS=[BlogPost@a1c25081], REVIEW=[BlogPost@15a3d005]},
+         * {
+         * six={ NEWS=[BlogPost@a1c25081], REVIEW=[BlogPost@15a3d005]},
          * seven={REVIEW=[BlogPost@19b4f786]},
          * five={GUIDE=[BlogPost@2c686bb, BlogPost@8e774689], NEWS=[BlogPost@6e966319]}}
          */
