@@ -12,7 +12,10 @@
         - InputStreamReader
         - FileReader
 
-```mermaid
+
+![InputStream](docs/InputStream.png)
+<details>
+  <summary>Mermaid Format</summary>
 graph TB
 A[InputStream] --> B[ByteArrayInputStream]
 A[InputStream] --> C[FileInputStream]
@@ -21,9 +24,12 @@ A[InputStream] --> E[ObjectInputStream]
 A[InputStream] --> F[PipedInputStream]
 D[FilterInputStream] --> G[BufferedInputStream]
 D[FilterInputStream] --> I[DataInputStream]
-```
+</details>
 
-```mermaid
+
+![filereader](docs/filereader.png)
+<details>
+  <summary>Mermaid Format</summary>
 graph TB
 A[Reader] --> B[BufferedReader]
 A[Reader] --> C[CharArrayReader]
@@ -33,8 +39,7 @@ A[Reader] --> F[PipeReader]
 A[Reader] --> G[StringReader]
 A[Reader] --> I[URLReader]
 E[InputStreamReader] --> k[FileReader]
-```
-
+</details>
 
 
 - Write
@@ -48,8 +53,10 @@ E[InputStreamReader] --> k[FileReader]
         - BufferedWriter
         - OutputStreamWriter
         - FileWriter
-    
-```mermaid
+
+![outputstream](docs/outputstream.png)
+<details>
+  <summary>Mermaid Format</summary>
 graph TB
 A[OutPutStream] --> B[ByteArrayOutputStream]
 A[OutPutStream] --> C[FileOutputStream]
@@ -59,9 +66,12 @@ A[OutPutStream] --> F[PipedOutputStream]
 D[FilterOutputStream] --> G[BufferedOutputStream]
 D[FilterOutputStream] --> H[PrintStream]
 D[FilterOutputStream] --> I[DataOutPutStream]
-```
+</details>
 
-```mermaid
+
+![writer](docs/writer.png)
+<details>
+  <summary>Mermaid Format</summary>
 graph TB
 A[Writer] --> B[BufferedWriter]
 A[Writer] --> C[CharArrayWriter]
@@ -72,7 +82,9 @@ A[Writer] --> H[PrintWriter]
 A[Writer] --> G[StringWriter]
 A[Writer] --> I[URLWriter]
 E[InputStreamWriter] --> k[FileWriter]
-```
+</details>
+
+
 
 - InputStream
     - int read(byte[])
