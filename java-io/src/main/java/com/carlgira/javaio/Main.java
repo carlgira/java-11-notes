@@ -81,7 +81,7 @@ public class Main {
 
     public void console() throws IOException {
         Console c = System.console();
-        if(c == null){
+        if(c == null){ // Console can be null, is necessary to check
             return;
         }
         c.writer().println("");
@@ -159,12 +159,13 @@ class FilesU {
         Files.list(utfFile).forEach(System.out::println); // List files on same directory
 
         Files.walk(utfFile).forEach(System.out::println); // List files recursively
+        Files.walk(utfFile, 3).forEach(System.out::println);  // List files recursively with MAxDepth
 
         // Move, delete
 
         Files.move(utfFile, Path.of("c:\\dev").resolve(utfFile.getFileName().toString()));
 
-        Files.delete(utfFile); // Directoties only if they are empty
+        Files.delete(utfFile); // Directories only if they are empty
 
         // Delete every thing of a folder
         try (Stream<Path> walk = Files.walk(utfFile)) {
@@ -199,9 +200,5 @@ class FilesU {
          */
 
         Files.createSymbolicLink(path, utfFile);
-    }
-
-
-    public void walk(Path p) throws IOException {
     }
 }
