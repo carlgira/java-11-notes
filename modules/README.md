@@ -233,12 +233,11 @@ Use jlink utility to create runtime image, that contains the JDK and the applica
 
 ### Other Links
 
-https://www.baeldung.com/java-9-modularity
-https://www.baeldung.com/jlink
+- https://www.baeldung.com/java-9-modularity
+- https://www.baeldung.com/jlink
 
 
-
-Question Notes:
+**Question Notes**
 - Identify the components of a module, service, consumer, architecture.
   - Consumer
   - Service locator
