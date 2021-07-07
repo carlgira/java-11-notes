@@ -17,8 +17,6 @@ import java.util.stream.Stream;
 
 public class Main {
 
-
-
     public void copyFileBinary(){
         try (InputStream inputStream = new FileInputStream("file.txt");
              OutputStream outputStream = new FileOutputStream("file-copy.txt")
@@ -48,7 +46,6 @@ public class Main {
             while ((length = reader.read(buff)) != -1){
                 writer.write(buff, 0, length);
             }
-
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -88,6 +85,9 @@ public class Main {
         c.reader().read();
 
         c.readLine();
+        c.readPassword();
+        c.readLine("Name");
+        c.readPassword("Enter password: ");
         char[] password = c.readPassword("Enter password: ");
     }
 
@@ -125,6 +125,8 @@ class FilesU {
         Files.writeString(utfFile, "this is my string ää öö üü"); // UTF 8
         System.out.println("utfFile = " + utfFile);
 
+        Files.createSymbolicLink(path, utfFile);
+
         try (BufferedWriter bufferedWriter = Files.newBufferedWriter(utfFile)) {
             // handle reader
         }
@@ -160,11 +162,11 @@ class FilesU {
 
         Files.walk(utfFile).forEach(System.out::println); // List files recursively
         Files.walk(utfFile, 3).forEach(System.out::println);  // List files recursively with MAxDepth
+        Files.find(utfFile, 3, (p, b) ->  p.isAbsolute()); // Same as walk with BiPredicate
 
         // Move, delete
 
         Files.move(utfFile, Path.of("c:\\dev").resolve(utfFile.getFileName().toString()));
-
         Files.delete(utfFile); // Directories only if they are empty
 
         // Delete every thing of a folder
@@ -198,7 +200,5 @@ class FilesU {
          * p3 = C:\dev\java-file-article\src\main\resources\some.properties
          * p3.isAbsolute() = true
          */
-
-        Files.createSymbolicLink(path, utfFile);
     }
 }

@@ -20,6 +20,7 @@ Closely related set of packages, described in the module-info.java in the root o
 - System Modules – These are the modules listed when we run the list-modules command above. They include the Java SE and JDK modules.
 - Application Modules – These modules are what we usually want to build when we decide to use Modules. They are named and defined in the compiled module-info.class file included in the assembled JAR.
 - Automatic Modules – We can include unofficial modules by adding existing JAR files to the module path. The name of the module will be derived from the name of the JAR. Automatic modules will have full read access to every other module loaded by the path.
+  - Naming of automatic modules: The rules for determining the name include removing the extension, removing numbers, and changing special characters to periods (.)
 
 Can be added as requires to other module using jar file or adding param to Manifest.
 
@@ -174,6 +175,8 @@ The --add-exports command-line option should only be used if deemed absolutely n
 
 ### JDEPS
 
+JDeps is a dependency analysis tool for Java bytecode, i.e. class files and JARs
+
 ```
 jdeps gdx-setup_latest.jar 
 gdx-setup_latest.jar -> java.base
@@ -237,10 +240,10 @@ https://www.baeldung.com/jlink
 
 Question Notes:
 - Identify the components of a module, service, consumer, architecture.
-- Consumer
-- Service locator
-- Service provider
-- Service provider interface
+  - Consumer
+  - Service locator
+  - Service provider
+  - Service provider interface
 - Identify the difference between:
   - Automatic modules
   - Unnamed modules
@@ -250,16 +253,15 @@ Question Notes:
 - Service Locator (ServiceLoader) has a load() method
 - A service is comprised of the interface, and a way to look up implementations of the interface. (Service => ServiceLocator + Service provider interface)
 - The consumer is generally separate so no join with other modules is possible.The service provider is decoupled from the service provider interface. It is most logical to combine the service locator and service provider interface because neither has a direct reference to the service provider.
-- Naming of automatic modules: The rules for determining the name include removing the extension, removing numbers, and changing special characters to periods (.)
 - "use" and "provides" needs a "requires" first.
-- Remember to learn options to compile an run modules.
+- Remember to learn options to compile and run modules.
   - compile
     - --module-path <paths to other modules>
     - -d <compiled output folder>
     - sourcepath <path to source code>
   - run
     - -p <path to modules>
-    - -m <module name>/<package name>.<main class name> <arguments>
+    - -m \<module name>/\<package name>.\<main class name> \<arguments>
   - migrations to module:
     - top‐down migration:
       - The first step is to move all the modules to the module path.
