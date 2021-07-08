@@ -1,14 +1,10 @@
 package com.carlgira.concurrency;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.BrokenBarrierException;
-import java.util.concurrent.ConcurrentLinkedQueue;
-import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.CyclicBarrier;
-import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 import java.util.stream.Collectors;
@@ -47,12 +43,9 @@ public class Synchronizers {
             results.forEach(System.out::println);
         });
 
-        for(int i=0;i<4;i++){
+        for(int i=0;i<3;i++){
             new Thread(new Worker()).start();
         }
-
-
-
     }
 
     public static void main(String[] args) throws InterruptedException {

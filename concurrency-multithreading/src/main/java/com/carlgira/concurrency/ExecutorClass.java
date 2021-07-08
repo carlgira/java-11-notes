@@ -6,7 +6,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class ExecutorClass {
 
     public static void createExecutors() {
-
         Runnable r = () -> System.out.println(1);
 
         ExecutorService pool0 = Executors.newFixedThreadPool(3);
@@ -21,14 +20,17 @@ public class ExecutorClass {
         ExecutorService pool4 = Executors.newCachedThreadPool();
         pool4.execute(r);
 
+        ExecutorService pool6 = Executors.unconfigurableExecutorService(Executors.newCachedThreadPool());
+        pool6.execute(r);
+
+
         ScheduledExecutorService pool1 = Executors.newScheduledThreadPool(3);
         pool1.scheduleAtFixedRate(r, 1000, 1000, TimeUnit.MILLISECONDS);
 
         ScheduledExecutorService pool5 = Executors.newSingleThreadScheduledExecutor();
         pool5.schedule(r, 1000, TimeUnit.MILLISECONDS);
 
-        ExecutorService pool6 = Executors.unconfigurableExecutorService(Executors.newCachedThreadPool());
-        pool6.execute(r);
+
 
 
     }
@@ -51,9 +53,10 @@ public class ExecutorClass {
 
         pool0.shutdown();
 
-        if(!pool0.awaitTermination(2000, TimeUnit.MILLISECONDS)){
+        if(!pool0.awaitTermination(3000, TimeUnit.MILLISECONDS)){
             pool0.shutdownNow();
         }
+
     }
 
     public static void executeAndSubmit() throws ExecutionException, InterruptedException {
@@ -84,6 +87,10 @@ public class ExecutorClass {
 
         Future<String> future = pool0.submit(callable);
         System.out.println(future.get());
+
+
+        Future future1 = pool0.submit(r);
+        future1.get() ; // => returns null
 
         pool0.shutdown();
         System.out.println("Method Finish");

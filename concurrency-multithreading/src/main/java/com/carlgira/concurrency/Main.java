@@ -5,21 +5,29 @@ import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class Main {
 
     static class Lateral implements Runnable{
         @Override
         public void run() {
+        }
+    }
 
+    static class Lateral1 implements Callable<String>{
+        @Override
+        public String call() throws Exception {
+            return null;
         }
     }
 
     public void runnable(){
 
+
         new Thread(new Lateral()).start();
+
+        Thread t = new Thread(new Lateral());
+        t.start();
 
         new Thread(new Runnable() {
             @Override
@@ -39,6 +47,9 @@ public class Main {
         t.start();
 
         t.isAlive();
+        t.isAlive();
+        t.isDaemon();
+        t.isInterrupted();
         Thread.State state = t.getState(); // ENUM
 
     }
@@ -47,13 +58,26 @@ public class Main {
 
     static class Test{
 
-        synchronized void one (){
+        synchronized void one(){
+            synchronized(this){
+
+            }
         }
 
-        static synchronized void two(){
+        static synchronized  void two(){
+            synchronized (Test.class){
+
+            }
         }
 
         void three(){
+
+            // t1
+            synchronized (this){
+
+            }
+
+            // t2
             synchronized (this){
 
             }
@@ -78,7 +102,14 @@ public class Main {
 
     private Lock lock1 = new ReentrantLock(true);
 
-    public void alternativeLock(){
+    public void alternagive(){
+        lock1.lock();
+
+        lock1.unlock();
+
+    }
+
+    public void alternativeLock() throws InterruptedException {
         if (lock1.tryLock()) {
             lock1.lock();
             try{
@@ -87,7 +118,6 @@ public class Main {
             catch (Exception e){
             }
             finally {
-
                 lock1.unlock();
             }
         }
@@ -126,6 +156,10 @@ public class Main {
         //t1.setDaemon(true);
         t1.start();
 
+        Thread t2 = new Thread(r);
+        //t1.setDaemon(true);
+        t2.start();
+
         Thread.sleep(1000);
         synchronized (object){
             System.out.println("Notify " + Thread.currentThread().getName());
@@ -141,9 +175,8 @@ public class Main {
             public void run() {
                 synchronized (object){
                     try {
-                        // object.wait(2000);
+                        //object.wait(2000);
                         object.wait();
-
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -186,7 +219,7 @@ public class Main {
         Thread t = new Thread(r);
         t.start();
 
-        //t.join();
+        t.join();
 
         System.out.println("Main thread finish");
     }
@@ -271,6 +304,7 @@ public class Main {
     }
 
     volatile static int a = 0;
+
     public static void volatile_method(){
         Thread t1 = new Thread(() -> {
             while (a < 1){
@@ -288,6 +322,12 @@ public class Main {
 
 
     public static void copyOnWrite(){
+
+        List<String> l3 = Collections.synchronizedList(List.of("", ""));
+        ConcurrentLinkedQueue<String>  l4 = new ConcurrentLinkedQueue<>();
+        // BlockingDeque<String> queue = new LinkedBlockedQueue<>();
+
+
         List<String> l1 = new CopyOnWriteArrayList<>();
         Set<String> l2  = new CopyOnWriteArraySet<>();
 

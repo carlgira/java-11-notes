@@ -166,6 +166,7 @@ https://docs.oracle.com/javase/tutorial/java/generics/index.html
 ## Lambdas
 - Inline implementation of functional interfaces
 - Functional Interfaces, interface with single abstract method.
+- Interface can declares an abstract method overriding one of the public method from java.lang.Object, that still can be considered as functional interface.  
 - (list of params) -> implementation
 - Method references using ::
     - Class::staticMethod

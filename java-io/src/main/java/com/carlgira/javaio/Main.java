@@ -68,12 +68,15 @@ public class Main {
         }
     }
 
-    public void scanner(){
+    public void scanner() throws FileNotFoundException {
         Scanner scanner = new Scanner(System.in);
         scanner.nextInt();
         scanner.nextDouble();
         scanner.nextFloat();
+
+        System.out.println("Name :");
         scanner.nextLine();
+
     }
 
     public void console() throws IOException {
@@ -81,12 +84,13 @@ public class Main {
         if(c == null){ // Console can be null, is necessary to check
             return;
         }
-        c.writer().println("");
-        c.reader().read();
 
-        c.readLine();
+        c.writer().println(""); // System.out
+        c.reader().read();  // System.in
+
+        c.readLine(); // System.in , scanner.nextLine()
         c.readPassword();
-        c.readLine("Name");
+        c.readLine("Name: ");
         c.readPassword("Enter password: ");
         char[] password = c.readPassword("Enter password: ");
     }
@@ -108,10 +112,8 @@ class FilesU {
 
     public static void files() throws IOException {
         Path path = Path.of("c:\\dev\\licenses\\windows\\readme.txt");
+        Path path1 = Paths.get("c:\\dev\\licenses\\windows\\readme.txt");
         boolean exists = Files.exists(path);
-
-        FileTime lastModifiedTime = Files.getLastModifiedTime(path);
-        UserPrincipal owner = Files.getOwner(path);
 
         Files.createTempFile("somePrefixOrNull", ".jpg");
 
@@ -122,8 +124,6 @@ class FilesU {
         System.out.println("newFile = " + newFile);
 
         Path utfFile = Files.createTempFile("some", ".txt");
-        Files.writeString(utfFile, "this is my string ää öö üü"); // UTF 8
-        System.out.println("utfFile = " + utfFile);
 
         Files.createSymbolicLink(path, utfFile);
 
@@ -162,7 +162,7 @@ class FilesU {
 
         Files.walk(utfFile).forEach(System.out::println); // List files recursively
         Files.walk(utfFile, 3).forEach(System.out::println);  // List files recursively with MAxDepth
-        Files.find(utfFile, 3, (p, b) ->  p.isAbsolute()); // Same as walk with BiPredicate
+        Files.find(utfFile, 3, (p, b) ->  p.startsWith("*.asd")); // Same as walk with BiPredicate
 
         // Move, delete
 
@@ -171,9 +171,9 @@ class FilesU {
 
         // Delete every thing of a folder
         try (Stream<Path> walk = Files.walk(utfFile)) {
-            walk.sorted(Comparator.reverseOrder()).forEach(path1 -> {
+            walk.sorted(Comparator.reverseOrder()).forEach(p -> {
                 try {
-                    Files.delete(path1);
+                    Files.delete(p);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

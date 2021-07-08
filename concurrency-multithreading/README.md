@@ -50,7 +50,7 @@ There are single thread pools, cached thread pools, there fixed rate creation of
 ![executors](docs/executors.png)
 
 - shutdown() => Stop accepting new task.
-- shutdownNow() => Stop executing threads.
+- shutdownNow() => Stop executing threads. !!FIX
 - boolean awaitingTermination(int time, TimeUnits) throws Exception => Waits for that time and checks if the executors has ended after shutdown
 - void execute(Runnable) => Execute Runnable code, no waiting.
 - Future submit(Callable) => Execute Callable code, wait for result with future.
