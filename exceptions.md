@@ -20,7 +20,7 @@ RuntimeException
   -  IOException
   -  ServletException
   -  SQLException
-- **UnChecked:** Exceptions that java requires us to handle and they associate to Exceptions at Runtime.
+- **UnChecked:** Exceptions that java not requires us to handle and they associate to Exceptions at Runtime.
   - NullPointerException
   - SecurityException
   - ArrayIndexOutOfBoundsException
