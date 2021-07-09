@@ -15,6 +15,7 @@ RuntimeException
 ```
 
 - **checked:** Exceptions that java requires us to handle.
+<<<<<<< HEAD:exceptions/README.md
     -  IOException
     -  ServletException
     -  SQLException
@@ -27,6 +28,20 @@ RuntimeException
 - **Errors:** Serious not recoverable error.
     - StackOverFlowError
     - OutOFMemoryError
+=======
+  -  IOException
+  -  ServletException
+  -  SQLException
+- **UnChecked:** Exceptions that java not requires us to handle and they associate to Exceptions at Runtime.
+  - NullPointerException
+  - SecurityException
+  - ArrayIndexOutOfBoundsException
+  - IllegalArgumentException
+  - ClassCastException
+- **Errors:** Serious not recoverable error. 
+  - StackOverFlowError 
+  - OutOFMemoryError
+>>>>>>> 1195f0e9b8a1014b472b83226af4273af5725cab:exceptions.md
 -  "throws" keyword for method declaration.
 -  "throw" keyword to declarative throw an Exception
 
@@ -85,5 +100,17 @@ catch(Excepcion e){
 - Not recomended to catch Throwable and Error
 
 
+<<<<<<< HEAD:exceptions/README.md
 
 
+=======
+## Logging
+  - java.util.logging.*;
+  - log(), severe(), warning(), info(), config(), fine(), finer(), finest()
+  - Logger logger = Logger.getLogger("");
+  - logging.properties
+  - Set Handlers to write
+## References
+
+Exception Handling in Java https://www.baeldung.com/java-exceptions
+>>>>>>> 1195f0e9b8a1014b472b83226af4273af5725cab:exceptions.md
