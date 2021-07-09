@@ -1,7 +1,5 @@
 # Exceptions
 
-Read first **Exception Handling in Java** https://www.baeldung.com/java-exceptions
-
 Type of exceptions
 
 ```
@@ -17,18 +15,18 @@ RuntimeException
 ```
 
 - **checked:** Exceptions that java requires us to handle.
-  -  IOException
-  -  ServletException
-  -  SQLException
+    -  IOException
+    -  ServletException
+    -  SQLException
 - **UnChecked:** Exceptions that java requires us to handle and they associate to Exceptions at Runtime.
-  - NullPointerException
-  - SecurityException
-  - ArrayIndexOutOfBoundsException
-  - IllegalArgumentException
-  - ClassCastException
-- **Errors:** Serious not recoverable error. 
-  - StackOverFlowError 
-  - OutOFMemoryError
+    - NullPointerException
+    - SecurityException
+    - ArrayIndexOutOfBoundsException
+    - IllegalArgumentException
+    - ClassCastException
+- **Errors:** Serious not recoverable error.
+    - StackOverFlowError
+    - OutOFMemoryError
 -  "throws" keyword for method declaration.
 -  "throw" keyword to declarative throw an Exception
 
@@ -37,9 +35,9 @@ RuntimeException
 - **structures:** try-catch, try-finally, try-catch-finally, try-(catch-catch-catch....)-finally
 - List of catchs (Exceptions in ascending order, otherwise will not compile)
 - List of Exceptions in one catch (must be simblings Exceptions or of different types)
-      
+
 ## try-with-resources
-  
+
 - **structures:** try, try-finally, try-catch , try-catch-finally
 - The try-with-resources defined variables only lives on the try block.
 - Variables in a try-with-resources must be final or effectively final
@@ -59,8 +57,23 @@ catch(Excepcion e){
 }
 
 ```
-    
-  ## Notes of question "Not compile"
+- AutoCloseable:
+    - void close() throws Exception;
+- Closeable
+    - void close() throws IOException;
+
+## Logging
+- java.util.logging.*;
+- log(), severe(), warning(), info(), config(), fine(), finer(), finest()
+- Logger logger = Logger.getLogger("");
+- logging.properties
+- Set Handlers to write
+
+## Links
+
+- https://www.baeldung.com/java-exceptions
+
+## Notes of question "Not compile"
 - throw instead of throws
 - throws instead of throw
 - throw Exception() => It must be => throw new Exception();
@@ -72,12 +85,5 @@ catch(Excepcion e){
 - Not recomended to catch Throwable and Error
 
 
-## Logging
-  - java.util.logging.*;
-  - log(), severe(), warning(), info(), config(), fine(), finer(), finest()
-  - Logger logger = Logger.getLogger("");
-  - logging.properties
-  - Set Handlers to write
-## References
 
-Exception Handling in Java https://www.baeldung.com/java-exceptions
+
