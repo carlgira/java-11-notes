@@ -104,7 +104,7 @@ public class Shop {}
 
 ```
 
-Annotations applied to a class is not inherited by its subclasses, unless it is marked as @Inherited
+Annotations applied to a class is not inherited by its subclasses, unless it is marked as @Inherited @Serializable
 
 ### Discover annotations
 

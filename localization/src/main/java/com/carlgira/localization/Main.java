@@ -12,18 +12,22 @@ import java.util.*;
 public class Main {
 
     public void properties() throws IOException {
+
         Properties props = new Properties();
         props.load(new FileInputStream("messages.properties"));
 
-        System.out.println(props.get("user"));
+        System.out.println(props.get("user")); // null
         System.out.println(props.get("password"));
-        System.out.println(props.getProperty("password", "default"));
+        System.out.println(props.getProperty("password", "default")); // default
     }
 
     public void locales(){
+
         Locale usLocale = Locale.US;
+        Locale usLocale1 = new Locale("en", "US");
         Locale franceLocale = Locale.FRANCE;
         Locale currentLocale = Locale.getDefault();
+        new Locale("fr", "CA");
 
         Locale.setDefault(Locale.US);
         Locale.setDefault(Locale.Category.DISPLAY, Locale.UK);
@@ -41,7 +45,6 @@ public class Main {
         Enumeration<String> keys = messages.getKeys();
     }
 
-
     public static void numbers(){
         NumberFormat nfCurrency = NumberFormat.getCurrencyInstance(Locale.UK);
         double value = 1_000_000.01;
@@ -49,6 +52,8 @@ public class Main {
 
         NumberFormat nfPercentage = NumberFormat.getPercentInstance(Locale.FRANCE);
         System.out.println(nfPercentage.format(value));
+
+        //NumberFormat.format(valor) => String
     }
 
 
@@ -70,14 +75,14 @@ public class Main {
         LocalDateTime.of(2022, 3, 1, 5, 55);
         LocalDateTime.parse("2021-02-01", DateTimeFormatter.ISO_DATE);
 
-        System.out.println(localDateTime.format(dateTimeFormatter));
+        // Date.format(DateFormat) => String
 
+        System.out.println(localDateTime.format(dateTimeFormatter));
 
         LocalDate localDate = LocalDate.of(2022, 3, 1);
         dateTimeFormatter.format(localDate);
     }
 
     public static void main(String[] args) throws IOException {
-
     }
 }

@@ -1,7 +1,4 @@
 package com.carlgira.annotations;
-
-import java.io.BufferedWriter;
-import java.io.IOException;
 import java.lang.annotation.*;
 import java.util.List;
 
@@ -10,22 +7,20 @@ import java.util.List;
 @interface SuperAnnotation {
 }
 
+@SuperAnnotation
+class Three{
+
+}
+
+class Four extends Three{
+
+}
+
+
 @Target(ElementType.TYPE_USE)
 @interface TypeUseAnnotation {
+    String value();
 }
-
-
-interface Dog {
-    int play();
-}
-
-@FunctionalInterface
-interface Webby extends Dog {
-    default void rest() {}
-    abstract int play();
-    abstract String toString();
-}
-
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
@@ -49,23 +44,24 @@ interface Webby extends Dog {
 class Shop {}
 
 
-@SuperAnnotation // TYPE
+@SuperAnnotation // ElementType.TYPE
 class Where {
-    @SuperAnnotation // FIELD
+
+    @SuperAnnotation // ElementType.FIELD
     private String name;
 
-    @SuperAnnotation // CONSTRUCTOR, TYPE_USE
+    @SuperAnnotation // ElementType.CONSTRUCTOR, ElementTypeTYPE_USE
     public Where(){
 
     }
 
-    @SuperAnnotation // METHOD
-    public void method(@SuperAnnotation String param){ // PARAMETER
+    @SuperAnnotation // ElementType.METHOD
+    public void method(@SuperAnnotation String param){ // ElementType.PARAMETER
 
-        @SuperAnnotation // LOCAL_VARIABLE
+        @SuperAnnotation // ElementType.LOCAL_VARIABLE
         Integer value = 1;
 
-        new @TypeUseAnnotation Object(); // TYPE_USE
+        new @TypeUseAnnotation("asd") Object(); // ElementType.TYPE_USE
     }
 }
 
@@ -75,6 +71,10 @@ public class Main  {
 
     @SafeVarargs
     private void safeargs(List<String>... values){ // private or final method
+    }
+
+    public void asd(String... a){ // This ok.
+
     }
 
     @Deprecated
@@ -95,4 +95,20 @@ public class Main  {
 
     public static void main(String[] args) {
     }
+}
+
+
+
+interface Dog {
+    int play();
+}
+
+@FunctionalInterface
+interface Webby extends Dog {
+    default void rest() {}
+    int play();
+
+    String toString();
+    boolean equals(Object e);
+    // hashcode
 }
