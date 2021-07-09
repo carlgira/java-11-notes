@@ -6,9 +6,11 @@ Oracle defines a locale as a:
 - political region
 - cultural region.
 
+
 - Region and language aware software
 - Dates, numbers and currencies
 - Ability to plug in country-specific data without changing code.
+
 
 - Language:
   - An alpha-2 or alpha-3 ISO 639 code
