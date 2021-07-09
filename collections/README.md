@@ -1,39 +1,42 @@
 # Collections
 
-- List: 
-  - Operations => add, remove, sort, indexof, set, clear
-- Set: 
-  - List of unique objects
-  - Operations => add, remove, sort, indexof, set, clear
-- Stack => 
-  - LIFO last in first out. 
-  - Operations => add, remove, push, pop, peek.
-- Queue 
-- FIFO first in first out, 
+- List:
+    - Operations => add, remove, sort, indexof, set, clear
+- Set:
+    - List of unique objects
+    - Operations => add, remove, sort, indexof, set, clear
+- Stack =>
+    - LIFO last in first out.
+    - Operations => add, remove, push, pop, peek.
+- Queue
+- FIFO first in first out,
 -  Operations => add, offer, remove, poll, peek.
 - Deque
-  - FIFO, LIFO. 
-  - Operations => add, add, addFirst, addLast, offer, offerFirst, offerLast, remove, removeFirst, removeLast, pop, push, poll, pollFirst, pollLast (ArrayDeque LinkedList)
+    - FIFO, LIFO.
+    - Operations => adds, addFirst, addLast, offer, offerFirst, offerLast, remove, removeFirst, removeLast, pop, push, poll, pollFirst, pollLast (ArrayDeque LinkedList)
 
 **Map**
 - HashMap => Map that does not care about order.
 - LinkedHashMap => Map that store keys in the same order they are inserted.
-- TreeMap => Map that sorts the entries when inserted. 
+- TreeMap => Map that sorts the entries when inserted.
 
-**Set** (repetead data is not added) (Sets do not have indexes)
+**Set** (repeated data is not added) (Sets do not have indexes)
 - HashSet => Data does not has an order.
 - LinkedHasSet => data is stored in same order is inserted.
 - TreeSet => data is ordered according with keys
 
-For the TreeSet and TreeMap, the objects must implement Comparable or use Compartator or else it fails.
+For the TreeSet and TreeMap, the objects must implement Comparable or use Comparator or else it fails.
 
-**Comparator**
-   - Used as utility classes (Collections or in lambdas) to sort arrays.
-   - Class or lambda to compare values. 
-   - CompareTo method with 3 outputs (-1, 0, +1)
-   - Having compare (x, y) (when x<y => -1) (when x==y => 0)  (when x>y => +1) 
-- Comparable => inteface with single method to compare values, implemented by objects inside a collection.
-
+**Comparator, Comparable**
+- Used as utility classes (Collections or in lambdas) to sort arrays.
+- Class or lambda to compare values.
+- CompareTo method with 3 outputs (-1, 0, +1)
+- Having compare (x, y) (when x<y => -1) (when x==y => 0)  (when x>y => +1)
+- Comparable => interface with single method to compare values, implemented by objects inside a collection.
+- Comparator:
+    - public int compare(T o1, T o2) {
+- Comparable:
+    - public int compareTo(T o)
 
 **Arrays**
 
@@ -50,12 +53,10 @@ For the TreeSet and TreeMap, the objects must implement Comparable or use Compar
 ## Concurrent access to collections
 
 - Prevent Collection corruption
-  - Unmodifiable: (inmutable) (fast, but-read-only) 
-    Set<Product> readOnlySet = Collections.unmodifiableSet(set);
-  - Syncronized: (slow and unscalable)
-    Map<Product, Integer> syncMap = Collections.synchronizedMap(map);
-  - Copy-on-write: (fast, but consumes memory) Every thread creates a copy for each thread and later joins changes of all threads.
-    List<Product> copyOnWrite = new CopyOnWriteArrayList<>(list);
-
-
-
+    - Unmodifiable: (immutable) (fast, but-read-only)
+      Set<Product> readOnlySet = Collections.unmodifiableSet(set);
+    - Synchronized: (slow and no scalable)
+      Map<Product, Integer> syncMap = Collections.synchronizedMap(map);
+    - Copy-on-write: (fast, but consumes memory) Every thread creates a copy for each thread and later joins changes of all threads.
+      List<Product> copyOnWrite = new CopyOnWriteArrayList<>(list);
+      

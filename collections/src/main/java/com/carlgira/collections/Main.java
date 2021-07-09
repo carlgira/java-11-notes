@@ -1,10 +1,10 @@
-package com.test;
+package com.carlgira.collections;
+
 
 import java.util.*;
 
-
 // Calls that implements Comparable
-class SOne implements Comparable {
+class SOne implements Comparable<SOne> {
 
     private Integer value;
 
@@ -26,9 +26,8 @@ class SOne implements Comparable {
     }
 
     @Override
-    public int compareTo(Object o) {
-        SOne sOne = (SOne) o;
-        return Integer.compare(this.getValue(), sOne.getValue());
+    public int compareTo(SOne o) {
+        return Integer.compare(this.getValue(), o.getValue());
     } // -1, 0 , +1
     // [1, 2] = -1
 }
@@ -54,7 +53,7 @@ class STwo {
     }
 }
 
-public class Collect {
+public class Main {
     /**
      * List
      * Set
@@ -98,7 +97,7 @@ public class Collect {
 
     public static void queue(){
         /**
-         * Queue => Intefaz
+         * Queue => Interface
          *
          * LinkedList
          */
@@ -169,7 +168,7 @@ public class Collect {
         System.out.println(deque);
 
         // add => offer => push
-        // pop => poll => remove
+        // poll => remove => pop
     }
 
     public static void sets(){
@@ -251,7 +250,7 @@ public class Collect {
         System.out.println("TreeSet " + set3);
     }
 
-    public static void sets2(){
+    public static void sets2(){ // Throws Exception
         Set<STwo> set3 = new TreeSet<>();
         set3.add(new STwo(5));
         set3.add(new STwo(1));
@@ -261,7 +260,7 @@ public class Collect {
     }
 
     public static void sets3(){
-        Set<STwo> set3 = new TreeSet<>(new Comparator<STwo>() {
+        Set<STwo> set3 = new TreeSet<>(new Comparator<>() {
             @Override
             public int compare(STwo o1, STwo o2) {
                 return Integer.compare(o1.getValue(), o2.getValue());
@@ -281,9 +280,6 @@ public class Collect {
         var mismatch1 = Arrays.mismatch(linux, mac);
         var mismatch2 = Arrays.mismatch(mac, mac);
         System.out.println(search + " " + mismatch1 + " " + mismatch2);
-
-
-
     }
 
     public static void arrays1(){
@@ -303,6 +299,7 @@ public class Collect {
         sets3();
     }
 }
+
 
 
 
