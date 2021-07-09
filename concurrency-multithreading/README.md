@@ -32,14 +32,15 @@ Callable => Interface that a thread can execute, with return value.
 ## Block thread
 Create a monitor object or class to coordinate access to some logic. Only one thread can access to the logic at one time, other threads are blocked.
 - Using synchronized keyword
-  - methods
-  - Or inside the method
-
+  - On method signature
+  - Inside the method
+  - Using the Lock class  
+  
 ## Make thread wait
-Using a monitor object is possible to make threads wait and forever.
+Using a monitor object is possible to make threads wait.
 - wait() => WAITING state
 - wait(int time) => WAITING_TIME state
-- notify() notifyAll()
+- notify() notifyAll() => To woke up the thread
 
 In real to wake up the thread, it will go from WAITING => BLOCKED => RUNNABLE
 
@@ -50,7 +51,7 @@ There are single thread pools, cached thread pools, there fixed rate creation of
 ![executors](docs/executors.png)
 
 - shutdown() => Stop accepting new task.
-- shutdownNow() => Stop executing threads. !!FIX
+- shutdownNow() => Prevents waiting tasks from starting and attempts to stop currently executing tasks
 - boolean awaitingTermination(int time, TimeUnits) throws Exception => Waits for that time and checks if the executors has ended after shutdown
 - void execute(Runnable) => Execute Runnable code, no waiting.
 - Future submit(Callable) => Execute Callable code, wait for result with future.
@@ -86,7 +87,7 @@ Occurs when trying to control the execution order of threads.
 
 **volatile:** It disables cache optimization of variables, and make sure that the threads have to go always to the heap for the object value.
 
-**Atomic:** Atomic actions are operations that can be executed without interruption  There are set of classes than implement a set of fucntionality.
+**Atomic:** Atomic actions are operations that can be executed without interruption  There are set of classes than implement a set of functionality.
 - AtomicInteger: getAndIncrement, incrementAndGet, addAndGet, getAndAdd, getAndSet, set.
 - AtomicBoolean
 - AtomicLong
@@ -97,36 +98,36 @@ Occurs when trying to control the execution order of threads.
 
 - **Non blocking concurrency:** Using "CopyOnWrite" type of collections. Underneath it creates a copy of the object for each thread, so there is no blocking between threads. (good for small collections with small number of changes)
 
-- **Alternative lock:** Using the Lock class. Call lock() and unlock() methods at the beggining and end of the code that want to be protected. It's possible to use locks for write and read locks.
+- **Alternative lock:** Using the Lock class. Call lock() and unlock() methods at the beginning and end of the code that want to be protected. It's possible to use locks for write and read locks.
   - lock()
   - tryLock(int time)
   - tryLock()
   - unlock()
 
 **Question Notes:**
-- Runnable method is run() Callable is call()
+- Runnable method is void run() Callable  is T call()
 - Even Atomic classes can be no thread-safe. Getting and setting value in two functions is no thread safe (o.getAnset(o.get()) => two operations no thread-safe)
 - Inside ONE thread is possible to "lock" the same resource several times. As is the same thread, the consecutive calls wont do anything. The lock works for the other threads.
 - List thread-safe:
   - CopyAndWrite and Concurrent* classes are thread-safe.
-  - Collections.syncronized() create locks around the list operations and no Concurrent modifications are allowed in the same thread. (itereate and try to remove one element)
-  - An normal List can not be iterated and modified at same time.
-  - Blocking* clases (LinkedBlockedQueue) (queue implementation only) has locks but is not thread safe.
+  - Collections.syncronized() create locks around the list operations and no Concurrent modifications are allowed in the same thread. (iterate and try to remove one element)
+  - A normal List can not be iterated and modified at same time.
+  - Blocking* classes (LinkedBlockedQueue) (queue implementation only) has locks but is not thread safe.
 - ExecutorService execute receives only a Runnable, submit can receive both Runnable and Callable.
 - future.get throws InterruptedException.
 - InvokeAny and InvokeAll works callable, they also returns the response of the threads.
 - Methods returning Exception:
   - wait
-  - invokeAll
-  - invokeAny
+  - List<Future<T>> invokeAll(List<Callable<T>>)
+  - List<Future<T>> invokeAny(List<Callable<T>>)
 - A submit method with a Runnable returns null.
 - If the shutdown method of ExecutorService is not called, the program will not terminate.
-- ConcurrentSkipListMap and ConcurrentSkipListSet are sorted implemenetation collections.
+- ConcurrentSkipListMap and ConcurrentSkipListSet are sorted implementation collections.
 - ExecutorService, Rate means separation between start of two threads but it does not wait if the first one it has not end it, Delay only execute one thread at time using the delay as minimum time.
 - CyclicBarrier:
   - It must complete the number of threads defined and object initialization. If not it will wait until it get to that number.
   - If the number of threads is superior than the number defined in cyclicbarrier the count is reset to zero and it starts again to count (the finalization or merge function executes each time the barrier is reached)
-- Becareful executorService must be shutdown so the program ends. The isShuthDown does nothing.
+- Be careful executorService must be shutdown so the program ends. The isShuthDown does nothing.
 - shutdown() does not allow the creation of new task, shutdownNow does not allow creation and "ATTEPMS" to shutdown task, (but is not guaranted!!).
 - syncronized on instance method use as monitor the object.
 - syncronized on static method use as monitor the class.

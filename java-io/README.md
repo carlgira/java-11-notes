@@ -135,16 +135,16 @@ markSupported: For the important ones, ByteArrayInputStream and BufferedInputStr
 
 ## Secure and Deserealization
 
-- Careful with the deserealization of untrusted sources
-- Implementation Seriablizable
+- Careful with the de-serealization of untrusted sources
+- Implementation Serializable
 - Fields, no static, no methods
 - Transient fields.
-- override writeObject, ReadObject to custom serialize, ObjectOutputStreeam.PutField, and ObjectInputStream.GetField as maps.
+- override writeObject, ReadObject to custom serialize, ObjectOutputStream.putField, and ObjectInputStream.getField as maps.
 - Use the variable SerialPersistentField as whitelist for fields to serialize
-- private static final ObjectStreamField[] serialPersistentFields = {new ObjectStreamField("next", List.class)};
-- Must be private static final, and have a list of fields and types.
+    - private static final ObjectStreamField[] serialPersistentFields = {new ObjectStreamField("next", List.class)};
+    - Must be private static final, and have a list of fields and types.
 - Oher options, Use a proxy serialization
-- int serialVersionUID = 1L; => Verion of class to protect changes of a serlialized class.
+- int serialVersionUID = 1L; => Version of class to protect changes of a serialized class.
 
 
 ## File System
@@ -165,7 +165,7 @@ Package java.nio.file.
     - getFileName()
     - getParent()
     - of
-    - this.resolve(other) => If the other parameter is an absolute path then this method trivially returns other. If other is an empty path then this method trivially returns this path. If the other is a relative path the method returns a concatenation of the two.
+    - this.resolve(other) => If the other parameter is an absolute path then this method trivially returns other. If other is an empty path then this method trivially returns this path. Otherwise returns a concatenation of the two.
     - this.resolveSiblings(other) => Resolves the other path against this path's parent path.
     - normalize()
     - relatibilize(path) => Construct a path from one location in the file system to another location. The relativize() method requires that both path values be absolute or relative (if not throws exception)
@@ -174,10 +174,10 @@ Package java.nio.file.
 
 ![path](docs/path.png)
 
-- toRealPath() validadates that the path exists
+- toRealPath() validates that the path exists
 
 ### Files
-Class to handle operations with path objects (check FilesU class with sample operations)
+Class to handle operations with path objects
 - absolute()
 - createFile, createDirectory, createTempFile, createSymbolyncLink
 - delete => Delete only if directory is empty
@@ -197,8 +197,9 @@ Class to handle operations with path objects (check FilesU class with sample ope
 
 ![file_properties](docs/file_properties.png)
 
+## Links
 
-https://www.marcobehler.com/guides/java-files
+- https://www.marcobehler.com/guides/java-files
 
 
 Question Notes:
@@ -206,8 +207,8 @@ Question Notes:
 - Remember Console can not be initialized with "new Console()" only with System.console().
 - Remember if System.out is used in a try-with-resources it can no be used later to print anything. (does not fail)
 - Remember Writer, Reader, OutputStream, InputStream abstract classes
-- Remember even if the static fields are not serialized if they are seted by any reason the static context is the same.
-- Remember toRealPath() throws an Exception an must be captured. If Files operation are used inside lambdas
+- Remember even if the static fields are not serialized if they are setted by any reason the static context is the same.
+- Remember toRealPath() throws an Exception and must be captured. If Files operation are used inside lambdas
 - Files.isSameFile first compare the Paths and later verifies that it exists and if it does not exist returns an exception.
 - The second argument of the copy() command should be the location of the new file, not the folder the new file is placed in.
 - Is possible to concatenate streams of the same type Writers with Writers, Readers with Readers, InputStreams with InputStreams and OutPutStreams with OutPutStreams.
@@ -221,9 +222,9 @@ Question Notes:
     - ATOMIC_MOVE (only move)
 - Exceptions copy, move, delete.
 - AtomicMoveNotSupportedException: Atomic file operation ends in a initial state or final state but not possible in a intermediate corrupt state. This exceptions is throw if the system does no suport atomic move.
-- DirectoryNotEmptyException: Can occurs with delete(), move(), copy().
-- FileAlreadyExistsException: Can occurs with move(), copy() is possible to avoid only when the REPLACE_EXISTING option is not passed    
+- DirectoryNotEmptyException: Can occur with delete(), move(), copy().
+- FileAlreadyExistsException: Can occur with move(), copy() is possible to avoid only when the REPLACE_EXISTING option is not passed    
 - The readPassword() returns a char array for security reasons. If the data was stored as a String, it would enter the shared JVM string pool, potentially allowing a malicious user to access it, especially if there is a memory dump. By using a char array, the data can be immediately cleared after it is written and removed from memory.
 - InputStream
 - reset, reset to the start to the stream or the last mark.
-- mark, there are some kind of streams that supports create a mark. A mark can help when reading a stream, or reseting the stream.
+- mark, there are some kind of streams that supports create a mark. A mark can help when reading a stream, or resetting the stream.

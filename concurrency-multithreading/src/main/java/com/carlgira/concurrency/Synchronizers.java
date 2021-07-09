@@ -5,8 +5,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CyclicBarrier;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -52,25 +50,4 @@ public class Synchronizers {
         cyclicBarrier();
 
     }
-
-    static class One {
-        private int o;
-
-        One(int a){
-            this.o = a;
-        }
-    }
-
-    static class Padlock {
-        private Lock lock = new ReentrantLock();
-
-        public void lockUp() {
-            if (lock.tryLock()) {
-                lock.lock();
-                System.out.println("Locked!");
-                lock.unlock();
-            }
-        }
-    }
-
 }

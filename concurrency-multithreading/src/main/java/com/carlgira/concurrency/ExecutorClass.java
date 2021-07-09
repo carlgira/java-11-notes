@@ -26,6 +26,7 @@ public class ExecutorClass {
 
         ScheduledExecutorService pool1 = Executors.newScheduledThreadPool(3);
         pool1.scheduleAtFixedRate(r, 1000, 1000, TimeUnit.MILLISECONDS);
+        pool1.scheduleWithFixedDelay(r, 1000, 1000, TimeUnit.MILLISECONDS);
 
         ScheduledExecutorService pool5 = Executors.newSingleThreadScheduledExecutor();
         pool5.schedule(r, 1000, TimeUnit.MILLISECONDS);
