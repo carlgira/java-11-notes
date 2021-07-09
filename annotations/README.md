@@ -29,6 +29,7 @@ Form of metadata
   - An array of above
   - No wrapper classes (Boolean, Integer, Double etc)
   - Object not supported
+  - void not supported as output  
   - An annotation element can include a default value if it is a non‐null constant expression.
     - No "new Object()"
     - No methods calls

@@ -1,59 +1,96 @@
 package com.carlgira.annotations;
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Target;
-import java.util.Date;
+import java.lang.annotation.*;
 import java.util.List;
+
+@Documented
+@Inherited
+@interface SuperAnnotation {
+}
+
+@Target(ElementType.TYPE_USE)
+@interface TypeUseAnnotation {
+}
 
 
 interface Dog {
-    default void drink() {}
-    void play();
+    int play();
 }
 
 @FunctionalInterface
 interface Webby extends Dog {
     default void rest() {}
-    abstract void play();
+    abstract int play();
     abstract String toString();
 }
 
-@interface Ano1 {
-    int one();
-    int value = 2;
+
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.TYPE)
+@interface BussinesPolicies {
+    BusinessPolicy[] value();
 }
 
-interface Ano2 extends Ano1{
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.TYPE)
+@Repeatable(BussinesPolicies.class)
+@interface BusinessPolicy {
+    String name() default "default policy";
+    String[] countries();
+    String value();
+}
 
+@BussinesPolicies({
+        @BusinessPolicy(name = "Returns Policy", countries = "GB", value = "4"),
+        @BusinessPolicy(countries = {"GB", "FR"}, value = "ship")
+})
+class Shop {}
+
+
+@SuperAnnotation // TYPE
+class Where {
+    @SuperAnnotation // FIELD
+    private String name;
+
+    @SuperAnnotation // CONSTRUCTOR, TYPE_USE
+    public Where(){
+
+    }
+
+    @SuperAnnotation // METHOD
+    public void method(@SuperAnnotation String param){ // PARAMETER
+
+        @SuperAnnotation // LOCAL_VARIABLE
+        Integer value = 1;
+
+        new @TypeUseAnnotation Object(); // TYPE_USE
+    }
 }
 
 public class Main  {
 
+    private String name;
+
     @SafeVarargs
-    private void safeargs(List<String>... values){
+    private void safeargs(List<String>... values){ // private or final method
     }
 
-    @Target(ElementType.TYPE_USE)
-    public @interface Friend {
-        String value();
-        String lastName() default "null";
-        int age = 10;
+    @Deprecated
+    public void superValue(){
+    }
 
-    } class MyFriends {
-        void makeFriends() {
+    @SuppressWarnings({"deprecated"})
+    public void badMehod(){
+        superValue();
+    }
 
-
-            new @Friend("Olivia") Object();
-
-            var friends = List.of(new @Friend("Olivia") Object(),
-                    new @Friend("Adeline") String(),
-                    new @Friend("Henry") MyFriends());
-        }
+    @Override
+    public String toString() {
+        return "Main{" +
+                "name='" + name + '\'' +
+                '}';
     }
 
     public static void main(String[] args) {
-        List<Object> stars = List.of(1,2,3);
-        stars.add(4);
-
     }
 }
